@@ -55,18 +55,7 @@ function getIdsFromIframe() {
           // Access the iframe's contentDocument
           const iframeDocument = helloSignIframe.contentDocument;
 
-          // Add a DOMContentLoaded event listener to the iframe's content
-          iframeDocument.addEventListener('DOMContentLoaded', function() {
-              // Query for all elements within the iframe that have an ID attribute
-              const elementsWithIds = iframeDocument.querySelectorAll('[id]');
-
-              // Get the IDs of all elements
-              const allIds = Array.from(elementsWithIds).map(element => element.id);
-
-              // Log the IDs
-              console.log("IDs of all elements within the iframe:");
-              console.log(allIds);
-          });
+          console.log(iframeDocument);
       });
   } else {
       console.log("Iframe not found.");
