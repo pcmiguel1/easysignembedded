@@ -39,5 +39,36 @@ window.onload = function () {
       client.on('close', (data) => {
         Android.onCancel();
       });
+
+      getIdsFromIframe();
     
+}
+
+function getIdsFromIframe() {
+  // Find the HelloSign iframe by its class or other attribute
+  const helloSignIframe = document.querySelector('.x-hellosign-embedded__iframe');
+
+  // Check if the iframe is found
+  if (helloSignIframe) {
+      // Add a load event listener to the iframe
+      helloSignIframe.addEventListener('load', function() {
+          // Access the iframe's contentDocument
+          const iframeDocument = helloSignIframe.contentDocument;
+
+          // Add a DOMContentLoaded event listener to the iframe's content
+          iframeDocument.addEventListener('DOMContentLoaded', function() {
+              // Query for all elements within the iframe that have an ID attribute
+              const elementsWithIds = iframeDocument.querySelectorAll('[id]');
+
+              // Get the IDs of all elements
+              const allIds = Array.from(elementsWithIds).map(element => element.id);
+
+              // Log the IDs
+              console.log("IDs of all elements within the iframe:");
+              console.log(allIds);
+          });
+      });
+  } else {
+      console.log("Iframe not found.");
+  }
 }
